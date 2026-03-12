@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Tracker — Stay Organized</title>
+  <meta name="description" content="A beautiful task tracker to manage your daily tasks with priorities, due dates, and smart filtering." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Animated background orbs -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <div class="app-container">
+    <!-- ───── Header ───── -->
+    <header class="app-header">
+      <div class="header-top">
+        <div class="logo">
+          <span class="logo-icon">✦</span>
+          <h1>Task Tracker</h1>
+        </div>
+        <span class="date-display" id="currentDate"></span>
+      </div>
+      <p class="tagline">Organize your day. Accomplish more.</p>
+
+      <!-- Stats bar -->
+      <div class="stats-bar">
+        <div class="stat-card">
+          <span class="stat-number" id="totalCount">0</span>
+          <span class="stat-label">Total</span>
+        </div>
+        <div class="stat-card stat-active">
+          <span class="stat-number" id="activeCount">0</span>
+          <span class="stat-label">Active</span>
+        </div>
+        <div class="stat-card stat-done">
+          <span class="stat-number" id="completedCount">0</span>
+          <span class="stat-label">Done</span>
+        </div>
+        <div class="stat-card stat-progress">
+          <span class="stat-number" id="progressPercent">0%</span>
+          <span class="stat-label">Progress</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ───── Add Task Form ───── -->
+    <section class="add-task-section glass-card">
+      <h2 class="section-title">
+        <span class="section-icon">＋</span> New Task
+      </h2>
+      <form id="taskForm" autocomplete="off">
+        <div class="form-row">
+          <div class="form-group form-group-title">
+            <label for="taskTitle">Title</label>
+            <input type="text" id="taskTitle" placeholder="What needs to be done?" required />
+          </div>
+          <div class="form-group form-group-priority">
+            <label for="taskPriority">Priority</label>
+            <select id="taskPriority">
+              <option value="low">🟢 Low</option>
+              <option value="medium" selected>🟡 Medium</option>
+              <option value="high">🔴 High</option>
+            </select>
+          </div>
+          <div class="form-group form-group-date">
+            <label for="taskDue">Due Date</label>
+            <input type="date" id="taskDue" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group form-group-desc">
+            <label for="taskDesc">Description <span class="optional">(optional)</span></label>
+            <input type="text" id="taskDesc" placeholder="Add a short description..." />
+          </div>
+          <button type="submit" class="btn-add" id="addTaskBtn">
+            <span class="btn-text">Add Task</span>
+            <span class="btn-icon">→</span>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ───── Controls Bar ───── -->
+    <section class="controls-bar">
+      <div class="filter-group">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="active">Active</button>
+        <button class="filter-btn" data-filter="completed">Completed</button>
+      </div>
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search tasks..." />
+      </div>
+      <button class="btn-clear-completed" id="clearCompletedBtn" title="Remove all completed tasks">
+        Clear Completed
+      </button>
+    </section>
+
+    <!-- ───── Task List ───── -->
+    <section class="task-list-section">
+      <div class="task-list" id="taskList">
+        <!-- Tasks rendered by JS -->
+      </div>
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">📋</div>
+        <p class="empty-title">No tasks yet</p>
+        <p class="empty-sub">Add your first task above to get started!</p>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
